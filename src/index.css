@@ -10,3 +10,17 @@ body {
   margin: 0;
   font-family: Inter, sans-serif;
 }
+
+.navbar {
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+}
+
+.list-container > li {
+  margin-bottom: 0.5rem;
+}
+
+@layer utilities {
+  .tablet-styles {
+    @apply bg-green-500 text-lg; /* Background color and text size for tablet */
+  }
+}
