@@ -14,9 +14,24 @@ export default function Main() {
   
   return (
     <main className="laptop:mx-20 tablet:mx-10 mx-4">
-      <form className="tablet:my-12 my-6 flex items-center gap-4" onSubmit={handleAddIngredient}>
-        <input className="tablet:p-2 tablet:w-[50%] py-1 h-full w-full border border-[#6B7280] rounded-md" type="text" id="search" name="ingredient" placeholder="e.g. oregano" aria-label="Add ingredient" />
-        <button className="tablet:text-xl bg-[#141413] text-white h-full px-2 py-1 rounded-md text-xs text-nowrap border border-black" type="submit" aria-label="Search">+ Add ingredient</button>
+      <form 
+        className="tablet:my-12 my-6 flex items-center gap-4" 
+        onSubmit={handleAddIngredient}
+      >
+        <input 
+          className="tablet:p-2 tablet:w-[50%] py-1 h-full w-full border border-[#6B7280] rounded-md" 
+          type="text" id="search" 
+          name="ingredient" 
+          placeholder="e.g. oregano" 
+          aria-label="Add ingredient" 
+        />
+        <button 
+          className="tablet:text-xl bg-[#141413] text-white h-full px-2 py-1 rounded-md text-xs text-nowrap border border-black" 
+          type="submit" 
+          aria-label="Search"
+        >
+          + Add ingredient
+        </button>
       </form>
 
       <div className="">
