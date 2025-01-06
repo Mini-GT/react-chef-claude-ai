@@ -4,8 +4,10 @@ export default function Fieldset() {
     const formData = new FormData(event.currentTarget)
     const employmentStatus = formData.get("employmentStatus") as string
     const dietaryStatus = formData.getAll("dietaryStatus") as string[] // use .getAll to get all values
+    const favColor = formData.get("favColor") as string
     console.log(employmentStatus)
     console.log(dietaryStatus)
+    console.log(favColor)
   }
 
   return (
@@ -41,6 +43,24 @@ export default function Fieldset() {
             Gluten-Free
         </label>
       </fieldset>
+
+      <label htmlFor="favColor">What is your favorite color?</label>
+      <select 
+        className="block mb-5 border-2 border-black" 
+        id="favColor"
+        name="favColor"
+        defaultValue=""
+        required // forces user to select an option
+      >
+        <option value="" disabled>-- Choose a color --</option>
+        <option value="red">Red</option>
+        <option value="orange">Orange</option>
+        <option value="yellow">Yellow</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="indigo">Indigo</option>
+        <option value="violet">Violet</option>
+      </select>
 
       <button 
         className="tablet:text-xl bg-[#141413] text-white h-full px-2 py-1 rounded-md text-xs text-nowrap border border-black" 
