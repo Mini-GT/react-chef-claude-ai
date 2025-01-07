@@ -10,7 +10,7 @@ function App() {
     <div className="bg-[#FAFAF8] h-screen">
       <Header />
       <Main />
-      {ingredients.length > 0 ? <Footer /> : null}
+      {ingredients.length > 3 ? <Footer /> : null}
     </div>
   )
 }
