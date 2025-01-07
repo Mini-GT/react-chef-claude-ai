@@ -1,9 +1,10 @@
 import { useState } from "react";
-import Fieldset from "./Fieldset";
+import { useStoreIngredient } from "../store/ingredient.store";
+// import Fieldset from "./Fieldset";
 
 export default function Main() {
   const [ingredients, setIngredients] = useState<string[]>([])
-
+  const storeIngredient = useStoreIngredient((state) => state.storeIngredient)
   // const addIngredient = (formData: FormData) => {
   //   const newIngredient = formData.get("ingredient") as string
   //   console.log(newIngredient)
@@ -19,11 +20,12 @@ export default function Main() {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const addNewIngredient = formData.get("ingredient") as string
+    storeIngredient(addNewIngredient)
     setIngredients((prevIngredients) => [...prevIngredients, addNewIngredient]);
   }
 
   const newIngredients = ingredients.map((ingredient, i) => <li key={i}>{ingredient}</li>)
-  
+
   return (
     <main className="laptop:mx-20 tablet:mx-10 mx-4">
       <form 
@@ -50,13 +52,13 @@ export default function Main() {
       </form>
 
       <div className="">
-        <h1 className="tablet:text-4xl tablet:mb-8 text-xl font-bold mb-4">Ingredients on hand:</h1>
+        {ingredients.length > 0 ? <h1 className="tablet:text-4xl tablet:mb-8 text-xl font-bold mb-4">Ingredients on hand:</h1> : null}
         <ul className="tablet:text-2xl list-container list-disc list-inside text-sm ml-2">
           {newIngredients}
         </ul>
       </div>
 
-      <Fieldset />
+      {/* <Fieldset /> */}
     </main>
   )
 }
