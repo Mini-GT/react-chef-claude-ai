@@ -1,17 +1,32 @@
 export default function Fieldset() {
-  const handleGetEmploymentStatus = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleStatus = (event: React.FormEvent<HTMLFormElement>) => {
+    // this code is better if there are a lot of form input
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
-    const employmentStatus = formData.get("employmentStatus") as string
-    const dietaryStatus = formData.getAll("dietaryStatus") as string[] // use .getAll to get all values
-    const favColor = formData.get("favColor") as string
-    console.log(employmentStatus)
-    console.log(dietaryStatus)
-    console.log(favColor)
+    const data = Object.fromEntries(formData)
+    const dietaryStatus = formData.getAll("dietaryStatus") as string[]
+    // .fromEntries() takes all the values in our inputs but doesnt take an array in our checkbox so we 
+    // have to combine with .formData.getAll() then copies the data into a new object and adds the 
+    // dietaryStatus object to update the new Data object
+    const newData = {
+      ...data,
+      dietaryStatus
+    }
+    console.log(newData)
+
+    // -- this code is not good if there are a lot of form input--
+    // event.preventDefault()
+    // const formData = new FormData(event.currentTarget)
+    // const employmentStatus = formData.get("employmentStatus") as string
+    // const dietaryStatus = formData.getAll("dietaryStatus") as string[] // use .getAll to get all values
+    // const favColor = formData.get("favColor") as string
+    // console.log(employmentStatus)
+    // console.log(dietaryStatus)
+    // console.log(favColor)
   }
 
   return (
-    <form onSubmit={handleGetEmploymentStatus}>
+    <form onSubmit={handleStatus}>
       <fieldset className="flex flex-col my-5">
         <legend>Employment Status:</legend>
         <label>
