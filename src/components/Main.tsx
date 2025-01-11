@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
 import { useStoreIngredient } from "../store/ingredient.store";
+import { Ingredients } from "../types/Ingredients.types";
+import IngredientsList from "./IngredientsList";
 // import Fieldset from "./Fieldset";
 
+const dummyIngredients = [
+  { name: "Oregano" },
+  { name: "Salt" },
+  { name: "Pepper" },
+  { name: "Garlic" },
+]
+
 export default function Main() {
-  const [ingredients, setIngredients] = useState<string[]>(['beefs', 'onion', 'garlic', 'tomato', 'pasta'])
+  const [ingredients, setIngredients] = useState<Ingredients[]>(dummyIngredients)
   const storeIngredient = useStoreIngredient((state) => state.storeIngredient)
 
   useEffect(() => {
@@ -24,10 +33,10 @@ export default function Main() {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const addNewIngredient = formData.get("ingredient") as string
-    setIngredients((prevIngredients) => [...prevIngredients, addNewIngredient]);
+    setIngredients((prevIngredients) => [...prevIngredients, { name: addNewIngredient }]);
   }
 
-  const newIngredients = ingredients.map((ingredient, i) => <li key={i}>{ingredient}</li>)
+  const newIngredients = ingredients.map((ingredient, i) => <li key={i}>{ingredient.name}</li>)
 
   return (
     <main className="laptop:mx-20 tablet:mx-10 mx-4">
@@ -54,12 +63,7 @@ export default function Main() {
         </button>
       </form>
 
-      <div className="">
-        {ingredients.length > 0 ? <h1 className="tablet:text-4xl tablet:mb-8 text-xl font-bold mb-4">Ingredients on hand:</h1> : null}
-        <ul className="tablet:text-2xl text-[#475467] list-container list-disc list-inside text-sm ml-2">
-          {newIngredients}
-        </ul>
-      </div>
+      {ingredients.length > 0 ? <IngredientsList newIngredients={newIngredients} /> : null}
 
       {/* <Fieldset /> */}
     </main>
