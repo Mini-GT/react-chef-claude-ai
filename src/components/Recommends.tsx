@@ -1,10 +1,15 @@
-import { useStoreIsRecipeShown } from "../store/recipeShow.store"
+import { useStoreResponseIngredient } from '../store/responseIngredient.store'
 
 export default function Recommends() {
-  const { isRecipeShown } = useStoreIsRecipeShown()
-
+  const {responseIngredient} = useStoreResponseIngredient((state) => state)
   return (
-    isRecipeShown ? <section className="laptop:mx-20 tablet:mx-10 mx-4">
+    <section>
+      <p>{responseIngredient}</p>
+    </section>
+  )
+}
+
+{/* <section className="laptop:mx-20 tablet:mx-10 mx-4">
       <h2 className="tablet:text-4xl tablet:mb-8 tablet:my-9 text-xl font-bold mb-4">Chef Claude Recommends:</h2>
       <article 
         className="suggested-recipe-container text-[#475467]" 
@@ -44,6 +49,4 @@ export default function Recommends() {
           <li>Serve hot, garnished with additional fresh basil or grated Parmesan cheese if desired.</li>
         </ol>
       </article>
-    </section> : null
-  )
-}
+    </section> */}
