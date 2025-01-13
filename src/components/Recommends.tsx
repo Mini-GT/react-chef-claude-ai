@@ -1,10 +1,14 @@
 import { useStoreResponseIngredient } from '../store/responseIngredient.store'
+import ReactMarkdown from 'react-markdown'
 
 export default function Recommends() {
   const {responseIngredient} = useStoreResponseIngredient((state) => state)
+  console.log(responseIngredient)
+  if (!responseIngredient) return null
+
   return (
-    <section>
-      <p>{responseIngredient}</p>
+    <section className='laptop:mx-20 tablet:mx-10 mx-4 mt-10 text-[#475467] text-xl'>
+      <ReactMarkdown children={responseIngredient} />
     </section>
   )
 }
