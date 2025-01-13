@@ -4,15 +4,9 @@ import { Ingredients } from "../types/Ingredients.types";
 import IngredientsList from "./IngredientsList";
 // import Fieldset from "./Fieldset";
 
-const dummyIngredients = [
-  { name: "Oregano" },
-  { name: "Salt" },
-  { name: "Pepper" },
-  { name: "Garlic" },
-]
 
 export default function Main() {
-  const [ingredients, setIngredients] = useState<Ingredients[]>(dummyIngredients)
+  const [ingredients, setIngredients] = useState<Ingredients[]>([])
   const storeIngredient = useStoreIngredient((state) => state.storeIngredient)
 
   useEffect(() => {
