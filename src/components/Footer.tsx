@@ -15,7 +15,7 @@ export default function Footer() {
 
 
   return (
-    <footer className="laptop:mt-40 laptop:mx-20 tablet:mx-10 bg-[#F0EFEB] rounded-md mx-4 mt-10">
+    <footer className="laptop:mt-10 laptop:mx-20 tablet:mx-10 bg-[#F0EFEB] rounded-md mx-4 mt-10">
       <div className="flex items-center justify-between gap-3 p-4">
         <div className="text-xs">
           <h1 className="tablet:text-xl mb-2 text-sm font-bold">Ready for a recipe?</h1>
