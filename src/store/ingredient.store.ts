@@ -9,6 +9,6 @@ type StoreIngredientsType = {
 export const useStoreIngredient = create<StoreIngredientsType>((set) => ({
   ingredients: [],
   storeIngredient: (newIngredient: Ingredients[]) => set((state) => ({ 
-    ingredients: [...state.ingredients, ...newIngredient] 
+    ingredients: [...state.ingredients, ...newIngredient]
   })),
 }))

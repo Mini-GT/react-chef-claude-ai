@@ -6,7 +6,6 @@ import { useStoreIngredient } from "./store/ingredient.store"
 
 function App() {
   const ingredients = useStoreIngredient((state) => state.ingredients)
-  console.log(ingredients)
   return (
     <div className="bg-[#FAFAF8] h-screen">
       <Header />

@@ -1,18 +1,19 @@
-// import { useStoreIsRecipeShown } from '../store/recipeShow.store'
 import { useStoreIngredient } from '../store/ingredient.store'
 import { getRecipeFromMistral } from '../../AI'
 import { useStoreResponseIngredient } from '../store/responseIngredient.store'
 
 export default function Footer() {
-  // const { storeIsRecipeShown } = useStoreIsRecipeShown()
   const {ingredients} = useStoreIngredient((state) => state)
   const {storeResponseIngredient} = useStoreResponseIngredient((state) => state)
 
   const getRecipe = async () => {
+    console.log("generating ingredient, please wait...")
     const res = await getRecipeFromMistral(ingredients)
+    if(!res) {
+      throw new Error("no response found")
+    }
     storeResponseIngredient(res)
   }
-
 
   return (
     <footer className="laptop:mt-10 laptop:mx-20 tablet:mx-10 bg-[#F0EFEB] rounded-md mx-4 mt-10">

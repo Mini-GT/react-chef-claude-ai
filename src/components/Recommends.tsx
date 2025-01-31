@@ -3,7 +3,6 @@ import ReactMarkdown from 'react-markdown'
 
 export default function Recommends() {
   const {responseIngredient} = useStoreResponseIngredient((state) => state)
-  console.log(responseIngredient)
   if (!responseIngredient) return null
 
   return (
