@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useStoreIngredient } from "../store/ingredient.store";
 import { Ingredients } from "../types/Ingredients.types";
 import IngredientsList from "./IngredientsList";
+import { useStoreResponseIngredient } from "../store/responseIngredient.store";
 // import Fieldset from "./Fieldset";
 
 
 export default function Main() {
-  const [ingredients, setIngredients] = useState<Ingredients[]>([])
   const storeIngredient = useStoreIngredient((state) => state.storeIngredient)
+  const [ingredients, setIngredients] = useState<Ingredients[]>([])
+  const {storeResponseIngredient} = useStoreResponseIngredient((state) => state)
 
   useEffect(() => {
     storeIngredient(ingredients)
@@ -28,8 +30,15 @@ export default function Main() {
     const formData = new FormData(event.currentTarget)
     const addNewIngredient = formData.get("ingredient") as string
     setIngredients((prevIngredients) => [...prevIngredients, { name: addNewIngredient }]);
+    event.currentTarget.reset();
   }
 
+  const clearIngredient = () => { 
+    setIngredients([])
+    storeIngredient([])
+    storeResponseIngredient("")
+    
+  }
   const newIngredients = ingredients.map((ingredient, i) => <li key={i}>{ingredient.name}</li>)
 
   return (
@@ -55,9 +64,18 @@ export default function Main() {
         >
           + Add ingredient
         </button>
+
+        <button 
+          className="tablet:text-xl bg-[#141413] text-white h-full px-2 py-1 rounded-md text-xs text-nowrap border border-black" 
+          type="submit" 
+          aria-label="Clear ingredient"
+          onClick={clearIngredient}
+        >
+          Clear ingredient
+        </button>
       </form>
 
-      {ingredients.length > 0 ? <IngredientsList newIngredients={newIngredients} /> : null}
+      {ingredients.length > 0  ? <IngredientsList newIngredients={newIngredients} /> : null}
 
       {/* <Fieldset /> */}
     </main>
